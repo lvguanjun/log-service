@@ -19,8 +19,6 @@ app = FastAPI()
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
-HOST = os.getenv("HOST", "127.0.0.1")
-PORT = int(os.getenv("PORT", 8000))
 
 
 class Log(BaseModel):
@@ -49,4 +47,4 @@ async def create_log(log: Log, request: Request):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("main:app", host=HOST, port=PORT)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000)

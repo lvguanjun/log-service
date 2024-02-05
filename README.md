@@ -31,15 +31,13 @@ cp .env.example .env
 ```
 
 - `API_KEY` 是你预设的 API 密钥，用于鉴权
-- `HOST` 是服务的监听地址
-- `PORT` 是服务的监听端口
 
 ## 运行
 
 在项目的根目录下，使用以下命令启动服务：
 
 ```bash
-uvicorn main:app
+uvicorn main:app --host 127.0.0.1 --port 8000
 ```
 
 这将在本地启动一个 FastAPI 应用，你可以通过访问 `http://localhost:8000` 来访问它。
