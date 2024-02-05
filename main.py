@@ -19,6 +19,10 @@ app = FastAPI()
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
+LOG_BASE_DIR = os.getenv("LOG_BASE_DIR", "./logs")
+
+if not os.path.exists(LOG_BASE_DIR):
+    os.makedirs(LOG_BASE_DIR)
 
 
 class Log(BaseModel):
@@ -36,7 +40,7 @@ async def create_log(log: Log, request: Request):
     timestamp = datetime.now().isoformat()
     log_entry = f"[{timestamp}] [{log.message}]\n"
 
-    log_file = f"{log.service}.log"
+    log_file = os.path.join(LOG_BASE_DIR, f"{log.service}.log")
 
     with open(log_file, "a") as f:
         f.write(log_entry)
